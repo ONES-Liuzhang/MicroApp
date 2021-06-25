@@ -5,8 +5,7 @@ const VueLoadePlugin = require('vue-loader/lib/plugin');
 const MiniCssExtraPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-// const isDev = process.env.NODE_ENV === 'development'
-const isDev = true
+const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
   mode:"development",
@@ -29,7 +28,7 @@ const config = {
     }
   },
   devServer: {
-    publicPath: "/assets/",
+    publicPath: "/",
     hot: true,
     progress: true, // 打包进度条
     headers: {
