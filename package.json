@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "qiankun": "^2.4.2"
+  },
+  "devDependencies": {
+    "express": "^4.17.1"
   }
 }

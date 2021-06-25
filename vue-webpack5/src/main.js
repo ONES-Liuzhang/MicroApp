@@ -1,3 +1,4 @@
+import './public-path.js'
 import Vue from 'vue'
 import { createRouter } from './router'
 import App from './App.vue'
@@ -10,7 +11,7 @@ let router = null
 function render(props = {}) {
 	const { container } = props;
 	
-	let routebase = window.__POWERED_BY_QIANKUN__ ? "/vue" : "/";
+	let routebase = window.__POWERED_BY_QIANKUN__ ? "/vue-webpack5" : "/";
 	
 	router = createRouter(routebase)
 

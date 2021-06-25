@@ -2,17 +2,21 @@ const path = require('path');
 const name = require("./package.json");
 const HtmlWebpaclPlugin = require('html-webpack-plugin');
 const VueLoadePlugin = require('vue-loader/lib/plugin');
+const MiniCssExtraPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
+const isDev = true
 
 const config = {
+  mode:"development",
   entry: {
     app: "./src/main.js"
   },
   output: {
-    // publicPath: ".",
+    publicPath: "./",
     path: path.join(__dirname, "dist"),
-    filename: isDev ? "bundle.js" : "[name].[contenthash:8].js",
+    filename: isDev ? "[name].js" : "[name].[contenthash:8].js",
     library: `${name}-[name]`,
     libraryTarget: "umd",
     // jsonpFunction: `webpackJsonp_${name}`  // webpack5废弃该属性 , 会根据package.json自动添加uniqueName属性
@@ -25,6 +29,7 @@ const config = {
     }
   },
   devServer: {
+    publicPath: "/assets/",
     hot: true,
     progress: true, // 打包进度条
     headers: {
@@ -33,7 +38,7 @@ const config = {
     port: 3334
   },
   module: {
-    // noParse: /vue(-router)?$/,
+    noParse: /^vue(-router)?$/,
     rules: [{
       test: /\.js$/,
       exclude: /node_module/,
@@ -41,12 +46,12 @@ const config = {
         {
           loader: 'babel-loader',
           options: {
-            presets: [[
-              '@babel/preset-env', {
-                corejs: 3,
-                modules: false,
-                useBuiltIns: "usage"
-            }]],
+            // presets: [[
+            //   '@babel/preset-env', {
+            //     corejs: 3,
+            //     modules: false,
+            //     useBuiltIns: "usage"
+            // }]],
             plugins: ['@babel/transform-arrow-functions', 'syntax-dynamic-import']
           }
         }
@@ -58,21 +63,29 @@ const config = {
     },
     {
       test: /\.css$/,
-      use: ['style-loader', 'css-loader']
+      use: [isDev ? 'style-loader' 
+      : {
+        loader: MiniCssExtraPlugin.loader,
+      }, 'css-loader']
     }
   ]},
   plugins: [
     new HtmlWebpaclPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, "index.html"),
+      template: path.join(__dirname, "public/index.html"),
       inject: "body"
     }),
     new VueLoadePlugin()
   ]
 }
 
+
 if(isDev) {
   config.devtool = "inline-source-map"
+} else {
+  const plugins = config.plugins;
+  plugins.push(new CleanWebpackPlugin())
+  plugins.push(new MiniCssExtraPlugin())
 }
 
 module.exports = config;

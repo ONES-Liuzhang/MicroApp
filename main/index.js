@@ -10,7 +10,13 @@ registerMicroApps([
     entry: "//localhost:3333",
     container: "#subapp-viewport",
     activeRule: '/netease'
-  }
+  },
+  {
+    name: "vue-wabpack5",
+    entry: "//localhost:3334",
+    container: "#subapp-viewport",
+    activeRule: '/vue-webpack5'
+  },
 ])
 
 start();
