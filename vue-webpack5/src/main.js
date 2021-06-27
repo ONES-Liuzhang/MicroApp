@@ -1,29 +1,29 @@
 import './public-path.js'
-import Vue from 'vue'
-import { createRouter } from './router'
-import App from './App.vue'
+// import Vue from 'vue'
+// import { createRouter } from './router'
+// import App from './App.vue'
 
-Vue.productionTips = false;
+// Vue.productionTips = false;
 
-let instance = null
-let router = null
+// let instance = null
+// let router = null
 
-function render(props = {}) {
-	const { container } = props;
+// function render(props = {}) {
+// 	const { container } = props;
 	
-	let routebase = window.__POWERED_BY_QIANKUN__ ? "/vue-webpack5" : "/";
+// 	let routebase = window.__POWERED_BY_QIANKUN__ ? "/vue-webpack5" : "/";
 	
-	router = createRouter(routebase)
+// 	router = createRouter(routebase)
 
-	instance = new Vue({
-		router,
-		render: (h) => h(App),
-	}).$mount(container ? container.querySelector("#app") : "#app")
-}
+// 	instance = new Vue({
+// 		router,
+// 		render: (h) => h(App),
+// 	}).$mount(container ? container.querySelector("#app") : "#app")
+// }
 
-if(!window.__POWERED_BY_QIANKUN__) {
-	render();
-}
+// if(!window.__POWERED_BY_QIANKUN__) {
+// 	render();
+// }
 
 // 导出子应用生命周期
 export async function bootstrap() {}

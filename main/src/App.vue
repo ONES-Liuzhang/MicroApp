@@ -1,10 +1,12 @@
 <template>
-  <Layout />
+  <div id="subapp-container">
+        <h4 v-if="loading" class="subapp-loading">Loading...</h4>
+        <div id="subapp-viewport"></div>
+  </div>
 </template>
 <script>
-import Layout from './layout'
 export default {
   name: "App",
-  components: {Layout}
+  props: ["loading"],
 }
 </script>

@@ -1,5 +1,5 @@
 const path = require('path');
-const name = require("./package.json");
+const name = require("./package.json").name;
 const HtmlWebpaclPlugin = require('html-webpack-plugin');
 const VueLoadePlugin = require('vue-loader/lib/plugin');
 const MiniCssExtraPlugin = require('mini-css-extract-plugin');
@@ -24,7 +24,7 @@ const config = {
     extensions: ['.vue', '.js', '.json'],
     alias: {
       '@': path.join(__dirname, 'src'),
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.runtime.esm.js'
     }
   },
   devServer: {

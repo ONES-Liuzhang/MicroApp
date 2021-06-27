@@ -4,33 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>QianKun Example</title>
+  <li onclick="push('/icnetease-mus')"><a href="javascript:;">netease-music</a></li>
+  <li onclick="push('/vue-webpack5')"><a href="javascript:;">vue-webpack5</a></li>
 </head>
 
 <body>
-  <div class="mainapp">
-    <!-- 标题栏 -->
-    <header class="mainapp-header">
-      <h1>QianKun</h1>
-    </header>
-    <div class="mainapp-main">
-      <!-- 侧边栏 -->
-      <ul class="mainapp-sidemenu">
-        <!-- <li onclick="push('/react16')">React16</li>
-        <li onclick="push('/react15')">React15</li>
-        <li onclick="push('/vue')">Vue</li>
-        <li onclick="push('/vue3')">Vue3</li>
-        <li onclick="push('/angular9')">Angular9</li>
-        <li onclick="push('/purehtml')">Purehtml</li> -->
-        <li onclick="push('/netease')">Netease</li>
-      </ul>
-      <!-- 子应用  -->
-      <main id="subapp-container"></main>
-    </div>
-  </div>
-
-  <script>
-    function push(subapp) { history.pushState(null, subapp, subapp) }
-  </script>
+  <div id="subapp-container"></div>
 </body>
-
+<script>
+  function push(subapp) { history.pushState(null, subapp, subapp) }
+</script>
 </html>

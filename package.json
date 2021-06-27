@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-history-api-fallback": "^1.6.0",
     "qiankun": "^2.4.2"
   },
   "devDependencies": {

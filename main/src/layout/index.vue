@@ -1,19 +1,27 @@
 <template>
   <div class="layout">
     <SideBar class="sideBar"/>
-    <div class="container"></div>
+    <div id="subapp-viewport">
+      loading...
+    </div>
   </div>
 </template>
 <script>
 import SideBar from './sidebar.vue'
 export default {
   name: "Layout",
+  props: ["loading"],
   components: { SideBar }
 }
 </script>
-<script>
-export default {
-  .layout {
-  }
+<style>
+.sideBar {
+  width: 300px;
+  height: 500px;
+  float: left;
 }
-</script>
+
+#subapp-viewport {
+  display: flow-root;
+}
+</style>
