@@ -1,10 +1,21 @@
 const express = require("express")
 const http = require("http")
 const history = require("connect-history-api-fallback")
+const minimist = require("minimist")
+const cors = require("cors")
+
 let port = 3000;
 
-const app = express();
+try {
+  const args = minimist(process.argv.splice(2))
+  port = args['p']
+} catch (err) {
+  console.log(err);
+  process.exit(1);
+}
 
+const app = express();
+app.use(cors());
 app.use(history({
   index: "/index.html",
   rewrites: {

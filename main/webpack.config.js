@@ -9,7 +9,7 @@ module.exports = {
     main: './index.js'
   },
   output: {
-    publicPath: './',
+    publicPath: '/',
     path: path.join(__dirname, "dist"),
     filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
   },
@@ -26,7 +26,8 @@ module.exports = {
       "Access-Control-Allow-Origin": "*",
     },
     port: 3001,
-    hot: true
+    hot: true,
+    historyApiFallback: true,
   },
   module: {
     rules: [

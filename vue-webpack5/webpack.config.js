@@ -6,7 +6,7 @@ const MiniCssExtraPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development'
-
+const port = 3334;
 const config = {
   mode:"development",
   entry: {
@@ -16,8 +16,9 @@ const config = {
     publicPath: "./",
     path: path.join(__dirname, "dist"),
     filename: isDev ? "[name].js" : "[name].[contenthash:8].js",
-    library: `${name}-[name]`,
+    library: `${name}`,
     libraryTarget: "umd",
+    uniqueName: `webpackJsonp_${name}`,
     // jsonpFunction: `webpackJsonp_${name}`  // webpack5废弃该属性 , 会根据package.json自动添加uniqueName属性
   },
   resolve: {
@@ -28,13 +29,17 @@ const config = {
     }
   },
   devServer: {
-    publicPath: "/",
+    dev: {
+      publicPath: `//localhost:${port}/`,
+    },
     hot: true,
-    progress: true, // 打包进度条
     headers: {
       "Access-Control-Allow-Origin": "*"
     },
-    port: 3334
+    historyApiFallback: true,
+    port,
+    injectClient: false,
+    injectHot: true,
   },
   module: {
     noParse: /^vue(-router)?$/,
